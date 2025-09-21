@@ -1,192 +1,7 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
+# Java
 
-# You are a Java expert and mentor.
-
-Your task is to generate a structured **quick revision guide** on Java, broken into sections. 
-I will specify which section to start from, and you will cover ONLY that section in detail.
-
-### Output Rules:
-
-- Be concise, exam-friendly, and clear.
-- Use headings, bullet points, tables, and short code snippets.
-- Highlight **common pitfalls**, **best practices**, and **Java version notes** (8, 11, 17, 21).
-- Use comparison tables when explaining differences (e.g., JVM vs JRE vs JDK).
-- Include **short examples** to clarify concepts.
-- For complex or abstract topics (e.g., memory model, garbage collection, threads, class loaders), 
-  use **analogies from real life** to make them easier to understand.
-
-
-### Sections:
-
-1. Core Java Fundamentals  
-Java History, Editions (SE/EE/ME), Features
-JVM vs JRE vs JDK
-Java Compilation Process and Bytecode
-Data Types (Primitive and Reference)
-Variables, Constants, Scope, var
-Operators and Control Flow (if, switch, loops)
-Arrays and Multidimensional Arrays
-Command-line Arguments and args[]
-Java Coding Conventions and Code Structure
-String Pool and Interning
-String Immutability and intern()
-Pass-by-value for Object References
-Wrapper Classes \& Autoboxing pitfalls
-Java Memory Layer for primitives and objects
-2. Object-Oriented Programming (OOP)  
-Classes and Objects
-OOP Principles: Encapsulation, Inheritance, Polymorphism, Abstraction
-Access Modifiers: public, private, protected, default
-Constructors (Overloaded, Private, Chaining)
-this and super keywords
-Method Overloading and Overriding
-Static Members (Methods, Blocks, Variables)
-Final Classes, Methods, Variables
-Inner Classes (Static, Non-static, Local, Anonymous)
-Abstract Classes and Interfaces
-Sealed Classes (Java 17)
-Object Class Methods
-Cloning and Cloneable Interface
-Covariant return types
-Composition vs Inheritance
-3. Advanced Java Features  
-Interface
-Functional Interfaces and @FunctionalInterface
-Lambda Expressions
-Method References
-Streams API (Map, Filter, Reduce, Terminal Ops, Collectors)
-Optional API – Usage and Pitfalls
-Date \& Time API (java.time)
-Text Blocks (Java 15)
-Pattern Matching for instanceof and switch (Java 16–21)
-Enhanced switch Expressions (Java 14)
-Records (Java 16+)
-var Type Inference (Java 10)
-Java Modules (Java 9 – Project Jigsaw)
-Virtual Threads (Java 21 – Project Loom)
-Structured Concurrency (Java 21 Preview)
-Switch with Pattern Guards (Java 21+)
-Type patterns in enhanced for-loops (Java 21+)
-Local variable type inference (var) limitations
-Default methods in interfaces
-Static interface methods
-Try-with-resources improvements (multi-catch with effectively final vars)
-4. Exception Handling  
-Checked vs Unchecked Exceptions
-try-catch-finally and try-with-resources
-Throw vs throws
-Custom Exception Creation
-Exception Chaining
-Throw vs throws
-Suppressed exceptions
-Multi-catch block
-Best Practices for Exception Handling
-5. Collections Framework
-6. Multithreading \& Concurrency 
-Process vs Threads
-Memory Model
-Thread Creation, Thread Lifecycle and Inter-Thread Communication
-Thread Joining, Daemon Thread, Thread Priority
-Locks and Conditions
-Reentrant
-ReadWrite
-Stamped
-Semaphore
-Lock-Free Concurrency
-Compare and Swap
-Atomic and Volatile Variables
-Thread Pools
-ThreadPoolExecutor Framework
-CompletableFuture, Future and Callable
-ForkJoinPool
-WorkStealingPool
-FixedThreadPool
-CachedThreadPool
-SingleThreadPool
-ScheduledThreadPoolExecutor
-Shutdown vs AwaitTermination
-ThreadLocal
-Virtual Threads vs Normal Threads
-7. JVM Internals \& Performance  
-JVM Architecture: Class Loader, Runtime Data Areas
-Class Loaders: Bootstrap, Extension, Application, Custom
-Memory Areas: Heap, Stack, Method Area, Metaspace
-Garbage Collection Algorithms (G1, ZGC, Shenandoah)
-Garbage Collection Tuning Basics
-JIT Compiler, Tiered Compilation
-Java Memory Model and Synchronization
-Escape Analysis and Object Allocation
-Finalization vs Cleaner API
-Profiling Tools: VisualVM, JConsole, jcmd, jmap, jstack
-Class Reinitialization, HotSwap, Java Agents
-Reference types (Soft, Weak, Phantom)
-Thread Stack Space
-Direct vs Heap Memory
-Safepoint concept
-Garbage Collector Phases (mark, sweep, compact, etc)
-GC Logs basics and flags
-Memory leak patters in Java
-8. File I/O and NIO  
-Legacy IO (java.io): File, InputStream, OutputStream
-Buffered Streams, Object Streams
-Scanner and PrintWriter
-NIO (java.nio): Channels, Buffers, Selectors
-NIO.2 (java.nio.file): Files, Paths, DirectoryStream, WatchService
-Memory-mapped files (MappedByteBuffer)
-FileChannel vs FileOutputStream
-Directory walking with Files.walkFileTree
-Charset encoding/decoding
-9. Reflection \& Annotations
-10. JDBC \& Database Access  
-JDBC Architecture and API
-Steps to Connect to a DB
-Statement vs PreparedStatement vs CallableStatement
-Batch Processing
-Transactions and Rollback
-Connection Pooling (HikariCP, Apache DBCP)
-ResultSet Navigation and Metadata
-SQL Injection Awareness
-ORM vs JDBC Comparison
-RowMapper, ResultSetExtractor concepts
-JDBC Driver Types (I-IV)
-11. Generics
-12. Serialization \& Deserialization  
-Serializable vs Externalizable
-Custom Serialization with writeObject(), readObject()
-SerialVersionUID
-Transient Keyword and Static Fields
-Serialization Proxy Pattern
-JSON (de)serialisation awareness (Jackson, Gson)
-Security vulnerabilities  in deserialisation
-readResolve()/writeReplace()
-13. Java APIs \& Utilities  
-java.util., java.lang., java.math.*
-String, StringBuilder, StringBuffer
-java.util.Objects, Arrays, Collections
-Wrapper Classes \& Autoboxing
-UUID, Random, SecureRandom, Formatter
-Regex (Pattern, Matcher)
-Locale, Currency, NumberFormat, DecimalFormat
-Java ServiceLoader (SPI Mechanism)
-
-### Instruction:
-
-When I say **"Start from Section X"**, generate the revision guide for that section only.  
-When done, ask me if I want to continue with the next section. 
-Always carry forward the same style so the whole guide feels consistent.
-
-I have reviewed the structure and requirements for the Java revision guide. I am ready to begin when you specify which section to start from.
-
----
-
-# Start from Section: Core Java Fundamentals
-
-This guide provides a quick revision of core Java fundamentals, covering its basic components, syntax, and memory concepts. It is designed to be concise and exam-friendly.
-
+## Core Java Fundamentals
 ### Java History, Editions, and Features
-
-Java was created by James Gosling at Sun Microsystems and released in 1995. It is a class-based, object-oriented, and platform-independent language.
-
 * **Java Editions**:
     * **SE (Standard Edition)**: The core platform for developing applications for desktops, servers, and embedded systems.
     * **EE (Enterprise Edition)**: Built on top of SE, it provides an API and runtime environment for developing and running large-scale, multi-tiered, and reliable network applications.
@@ -385,15 +200,8 @@ int primitiveValue = myValue; // Throws NullPointerException
 * **Heap Memory**: Stores all objects and arrays. This memory is shared among all threads. The Garbage Collector manages deallocation.
 
 ***
-Would you like to continue with "Section 2: Object-Oriented Programming (OOP)"?
 
----
-
-# yes
-
-Excellent. Here is the revision guide for the next section.
-
-### Object-Oriented Programming (OOP)
+## Object-Oriented Programming (OOP)
 
 This section covers the principles and constructs that form the foundation of Java's object-oriented nature.
 
@@ -589,15 +397,8 @@ Two primary ways to reuse code.
 * **Best Practice**: Favor **composition over inheritance**. It offers more flexibility and is less fragile. Inheritance creates a tight coupling between parent and child classes, which can be hard to maintain.
 
 ***
-Would you like to continue with "Section 3: Advanced Java Features"?
 
----
-
-# yes
-
-Of course. Here is the revision guide for the next section, focusing on modern Java features.
-
-### Advanced Java Features
+## Advanced Java Features
 
 This section covers key features introduced in Java 8 and later versions, which have significantly modernized the language.
 
@@ -822,11 +623,7 @@ Would you like to continue with "Section 4: Exception Handling"?
 
 ---
 
-# yes
-
-Certainly. Let's proceed with the guide on handling errors and exceptional events in Java.
-
-### Exception Handling
+## Exception Handling
 
 Exception handling provides a robust way to manage runtime errors, allowing a program to handle disruptions gracefully instead of crashing.
 
@@ -988,15 +785,8 @@ try {
 * **Document exceptions**: Use the `@throws` Javadoc tag to inform callers about the checked exceptions a method can throw.
 
 ***
-Would you like to continue with "Section 5: Collections Framework"?
 
----
-
-# yes
-
-Of course. Here is the revision guide for the Java Collections Framework.
-
-### Collections Framework
+## Collections Framework
 
 The Java Collections Framework provides a unified architecture for storing and manipulating groups of objects. It consists of interfaces, implementations, and algorithms.
 
@@ -1132,15 +922,8 @@ Provides static utility methods for operating on collections, such as:
     * **Note**: These collections are truly immutable, reject `null` elements/keys/values, and have a fixed size.
 
 ***
-Would you like to continue with "Section 6: Multithreading \& Concurrency"?
 
----
-
-# yes
-
-Understood. This section delves into the complex but powerful world of concurrent programming in Java.
-
-### Multithreading \& Concurrency
+## Multithreading \& Concurrency
 
 Concurrency allows a program to do multiple things at the same time, improving throughput and responsiveness.
 
@@ -1270,15 +1053,8 @@ Provides thread-scoped variables. Each thread that accesses a `ThreadLocal` vari
 * **Best Practice**: Use `Executors.newVirtualThreadPerTaskExecutor()` to easily leverage virtual threads for I/O-bound tasks.
 
 ***
-Would you like to continue with "Section 7: JVM Internals \& Performance"?
 
----
-
-# yes
-
-Of course. Let's explore the engine that powers Java applications.
-
-### JVM Internals \& Performance
+## JVM Internals \& Performance
 
 Understanding the Java Virtual Machine (JVM) is key to writing high-performance, robust applications and diagnosing complex issues like memory leaks and latency problems.
 
@@ -1374,15 +1150,8 @@ Tools used to monitor and diagnose JVM applications.
 * **Escape Analysis**: A JVM optimization where an object's scope of use is analyzed. If an object does not "escape" its method (i.e., it's not returned or assigned to a field), the JVM can allocate it on the **stack** instead of the heap. This is much faster and avoids GC overhead.
 
 ***
-Would you like to continue with "Section 8: File I/O and NIO"?
 
----
-
-# yes
-
-Of course. Let's move on to handling input and output in Java.
-
-### File I/O and NIO
+## File I/O and NIO
 
 Java provides two main APIs for file and network I/O. The original `java.io` (blocking I/O) and the more modern `java.nio` (non-blocking I/O).
 
@@ -1481,15 +1250,8 @@ try {
 * **Best Practice**: For modern file operations, **always prefer the NIO.2 API (`Path`, `Files`)** over the old `java.io.File`. For networking, use NIO for high-concurrency servers.
 
 ***
-Would you like to continue with "Section 9: Reflection \& Annotations"?
 
----
-
-# yes
-
-Of course. Let's cover the mechanisms Java provides for examining and modifying program behavior at runtime.
-
-### Reflection \& Annotations
+## Reflection \& Annotations
 
 Reflection and Annotations are advanced features that enable meta-programming in Java. They are the backbone of many modern frameworks like Spring, Hibernate, and JUnit.
 
@@ -1643,15 +1405,8 @@ String json = serializer.serialize(p); // json will be: {"product_name": "Laptop
 This example shows the powerful synergy between annotations (providing the metadata) and reflection (reading that metadata at runtime to alter behavior).
 
 ***
-Would you like to continue with "Section 10: JDBC \& Database Access"?
 
----
-
-# yes
-
-Excellent. Let's proceed to database connectivity in Java.
-
-### JDBC \& Database Access
+## JDBC \& Database Access
 
 JDBC (Java Database Connectivity) is the standard Java API that allows Java applications to connect and interact with relational databases.
 
@@ -1764,15 +1519,8 @@ A transaction is a sequence of operations performed as a single logical unit of 
 * **ORM (Object-Relational Mapping)**: Frameworks like Hibernate/JPA provide a high-level abstraction. They map Java objects directly to database tables, generate SQL automatically, and manage sessions. This reduces boilerplate but can hide performance issues if not used carefully.
 
 ***
-Would you like to continue with "Section 11: Generics"?
 
----
-
-# yes
-
-Of course. Let's dive into generics, a feature fundamental to modern, type-safe Java.
-
-### Generics
+## Generics
 
 Introduced in Java 5, generics provide compile-time type safety by allowing you to create classes, interfaces, and methods that operate on types as parameters.
 
@@ -1903,15 +1651,8 @@ Due to type erasure, generics have some limitations:
 * **Cannot use `instanceof` with a parameterized type**: `if (myList instanceof ArrayList<String>)` is not allowed because `String` is erased at runtime. You can only do `if (myList instanceof ArrayList)`.
 
 ***
-Would you like to continue with "Section 12: Serialization \& Deserialization"?
 
----
-
-# yes
-
-You got it. Here is the revision guide for serialization.
-
-### Serialization \& Deserialization
+## Serialization \& Deserialization
 
 Serialization is the process of converting a Java object's state into a byte stream. Deserialization is the reverse process: rebuilding the object from that byte stream. This is used for persisting objects to disk, sending them over a network, or storing them in a database.
 
@@ -2003,15 +1744,8 @@ This is an advanced but highly recommended pattern for creating robust and secur
 * **Benefits**: This decouples the serialized form from the class's implementation, making it much easier to maintain and evolve the class without breaking serialization compatibility. It also provides a single point of control (`readResolve`) to validate data during deserialization, improving security.
 
 ***
-Would you like to continue with "Section 13: Java APIs \& Utilities"?
 
----
-
-# yes
-
-Excellent. Let's conclude with a review of essential APIs and utility classes.
-
-### Java APIs \& Utilities
+## Java APIs \& Utilities
 
 This section covers a collection of fundamental classes from the standard library that are used in virtually every Java application.
 
@@ -2099,6 +1833,3 @@ A utility class for operations on collections (covered in the Collections sectio
 * **`Formatter`**: Provides C-style `printf()` formatting capabilities.
 * **`Locale`**: Represents a specific geographical, political, or cultural region. Used to tailor formatted output (like dates, currencies, and numbers) to the user's conventions.
 * **`NumberFormat`, `DecimalFormat`, `DateTimeFormatter`**: Classes used for converting numbers and dates to and from locale-sensitive string representations.
-
-This concludes the quick revision guide covering all 13 sections. You now have a comprehensive overview of core and advanced Java topics.
-
