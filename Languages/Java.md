@@ -695,7 +695,7 @@ These are thread-safe collections designed for multi-threaded environments. They
 ---
 
 <details>
-  <summary>06: Multithreading \& Concurrency</summary>
+  <summary>06: Multithreading & Concurrency</summary>
 
 ### Process vs. Thread (IMP)
 
@@ -713,7 +713,7 @@ This is a fundamental concept in concurrency.
 
 ### Thread Creation and Lifecycle
 
-* **Ways to Create a Thread**:
+**Ways to Create a Thread**:
 
 1. **Extend `Thread` class**: Subclass the `Thread` class and override its `run()` method.
 2. **Implement `Runnable` interface (IMP)**: Implement the `Runnable` interface and pass an instance of it to a `Thread`'s constructor. **This is the preferred approach** as it allows the class to extend other classes (Java doesn't support multiple inheritance).
