@@ -642,3 +642,315 @@ public class ApplicationRunner {
 </details>
 
 ---
+
+<details>
+    <summary>04: Builder Design Pattern</summary>
+
+### Definition
+Builder pattern separates the object's construction logic from its final representation, enabling the creation of different configurations of the same object using a consistent construction process.
+
+### Intent / Purpose
+Simplify the creation of complex objects. When an object requires numerous parameters in its constructor, some of which may be optional, developers often resort to creating multiple constructors (a "telescoping constructor" anti-pattern) or passing null for optional values. 
+
+The Builder pattern resolves this by encapsulating the construction logic in a separate `Builder` object, which gathers the necessary components and then constructs the final object in a single, final step.
+
+### Core Idea
+The core idea is the **separation of concerns**. The `Product` (the complex object being built) does not know or care how it is assembled. The `Builder` interface defines the steps to build the `Product`. A `ConcreteBuilder` implements these steps and keeps track of the representation it is creating. Finally, an optional `Director` class can be used to encapsulate a common construction sequence, orchestrating the `Builder` to create a specific type of `Product`. This allows the construction process to be reused to build different representations of the `Product`.
+
+### UML Representation (ASCII)
+
+```
++----------+       uses       +------------------+
+| Director |----------------->|   <<interface>>  |
++----------+                  |      Builder     |
+                              +------------------+
+                                       ^
+                                       |
+                                  (implements)
+                                       |
+                         +-----------------------------+
+                         |       ConcreteBuilder       |
+                         |-----------------------------|
+                         | - product: Product          |
+                         |-----------------------------|
+                         | + buildPartA()              |
+                         | + buildPartB()              |
+                         | + getResult(): Product      |
+                         +-----------------------------+
+                                       |
+                                    (builds)
+                                       |
+                                       v
+                                 +-----------+
+                                 |  Product  |
+                                 +-----------+
+```
+
+### Real-World Analogy
+
+Consider ordering a custom PC. The `Product` is the final `Computer`. The `Builder` is the online configuration tool. You, the customer, act as the `Director` by selecting components step-by-step: choosing the CPU (`buildCPU()`), adding RAM (`buildRAM()`), and selecting a graphics card (`buildGPU()`). 
+
+Each selection modifies the configuration held by the builder. When you are finished, you click "Build," which is equivalent to calling `build()`, and the system assembles the `Computer` object with your specified components. The same configuration tool (Builder) can be used to create a high-end gaming PC or a budget office machine (different representations).
+
+### Java Implementations
+
+#### Classic Builder Pattern (with Director)
+
+This implementation uses a `Director` to control the construction sequence. It is useful when there are common, predefined ways to construct an object.
+
+```java
+// Product: The complex object we want to create.
+class Car {
+    private String engine;
+    private int seats;
+    private boolean hasGPS;
+    private String tripComputer;
+
+    // Getters and a toString() method for demonstration
+    public void setEngine(String engine) { this.engine = engine; }
+    public void setSeats(int seats) { this.seats = seats; }
+    public void setHasGPS(boolean hasGPS) { this.hasGPS = hasGPS; }
+    public void setTripComputer(String tripComputer) { this TripComputer = tripComputer; }
+
+    @Override
+    public String toString() {
+        return "Car [engine=" + engine + ", seats=" + seats + ", hasGPS=" + hasGPS + ", tripComputer=" + tripComputer + "]";
+    }
+}
+
+// Builder: Abstract interface for creating parts of a Car object.
+interface CarBuilder {
+    void buildEngine();
+    void buildSeats();
+    void buildGPS();
+    void buildTripComputer();
+    Car getResult();
+}
+
+// ConcreteBuilder: Implements the Builder interface to construct and assemble parts of the car.
+class SportsCarBuilder implements CarBuilder {
+    private Car car;
+
+    public SportsCarBuilder() {
+        this.car = new Car();
+    }
+
+    @Override
+    public void buildEngine() { car.setEngine("Sports Engine"); }
+    @Override
+    public void buildSeats() { car.setSeats(2); }
+    @Override
+    public void buildGPS() { car.setHasGPS(true); }
+    @Override
+    public void buildTripComputer() { car.setTripComputer("Advanced Trip Computer"); }
+    @Override
+    public Car getResult() { return this.car; }
+}
+
+// Director: Constructs an object using the Builder interface.
+class CarDirector {
+    public void constructSportsCar(CarBuilder builder) {
+        builder.buildEngine();
+        builder.buildSeats();
+        builder.buildGPS();
+        builder.buildTripComputer();
+    }
+}
+
+// Client Code
+public class ClassicBuilderDemo {
+    public static void main(String[] args) {
+        CarDirector director = new CarDirector();
+        SportsCarBuilder builder = new SportsCarBuilder();
+        
+        director.constructSportsCar(builder);
+        Car sportsCar = builder.getResult();
+        
+        System.out.println("Created Car: " + sportsCar); // Outputs the sports car configuration
+    }
+}
+```
+
+
+#### Fluent Builder Pattern
+
+This modern approach uses method chaining for a more readable, fluent API. It is commonly implemented as a static inner class of the object it builds.
+
+```java
+// Product: The object to be built. It is often immutable.
+public class HttpRequest {
+    private final String url;
+    private final String method;
+    private final String body;
+    private final String headers;
+
+    // Private constructor to be called only by the builder
+    private HttpRequest(Builder builder) {
+        this.url = builder.url;
+        this.method = builder.method;
+        this.body = builder.body;
+        this.headers = builder.headers;
+    }
+
+    // Only getters, making the object immutable
+    public String getUrl() { return url; }
+    public String getMethod() { return method; }
+    public String getBody() { return body; }
+    public String getHeaders() { return headers; }
+
+    @Override
+    public String toString() {
+        return "HttpRequest [url=" + url + ", method=" + method + ", headers=" + headers + ", body=" + body + "]";
+    }
+
+    // Static inner Builder class
+    public static class Builder {
+        // Required parameters
+        private final String url;
+        private final String method;
+
+        // Optional parameters
+        private String body = "";
+        private String headers = "Content-Type: application/json";
+
+        public Builder(String url, String method) {
+            this.url = url;
+            this.method = method;
+        }
+
+        // Setter methods for optional parameters return the builder itself (fluent interface)
+        public Builder body(String body) {
+            this.body = body;
+            return this;
+        }
+
+        public Builder headers(String headers) {
+            this.headers = headers;
+            return this;
+        }
+
+        // The final build() method creates the HttpRequest object
+        public HttpRequest build() {
+            return new HttpRequest(this);
+        }
+    }
+}
+
+// Client Code
+public class FluentBuilderDemo {
+    public static void main(String[] args) {
+        HttpRequest request = new HttpRequest.Builder("https://api.example.com/data", "POST")
+                .headers("Authorization: Bearer xyz; Custom-Header: value")
+                .body("{'key':'value'}")
+                .build();
+        
+        System.out.println(request);
+    }
+}
+```
+
+
+#### Immutable Object Builder
+
+This is a variation of the Fluent Builder focused on creating immutable Plain Old Java Objects (POJOs) or Data Transfer Objects (DTOs). The final object has a private constructor and only getters.
+
+```java
+// Product: An immutable User DTO.
+public final class User {
+    private final String firstName; // required
+    private final String lastName;  // required
+    private final int age;          // optional
+    private final String phone;     // optional
+
+    private User(UserBuilder builder) {
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.age = builder.age;
+        thisPhone = builder.phone;
+    }
+
+    // All fields are final and only have getters
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public int getAge() { return age; }
+    public String getPhone() { return phone; }
+
+    @Override
+    public String toString() {
+        return "User: "+this.firstName+", "+this.lastName+", "+this.age+", "+this.phone;
+    }
+
+    // The static inner builder class
+    public static class UserBuilder {
+        private final String firstName;
+        private final String lastName;
+        private int age;
+        private String phone;
+
+        public UserBuilder(String firstName, String lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        public UserBuilder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public UserBuilder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        // The build method returns the final immutable User object
+        public User build() {
+            // Can add validation logic here before creating the object
+            if (age < 0 || age > 150) {
+                throw new IllegalStateException("Age is not valid.");
+            }
+            return new User(this);
+        }
+    }
+}
+
+// Client Code
+public class ImmutableObjectBuilderDemo {
+    public static void main(String[] args) {
+        User user = new User.UserBuilder("John", "Doe")
+                .age(30)
+                .phone("123-456-7890")
+                .build();
+
+        System.out.println(user);
+    }
+}
+```
+
+### Common Use Cases
+- Configuration Objects
+- HTTP Request Clients
+- Report Generation
+- Document Builders
+- Unit Test Data
+
+### Advantages / Benefits
+- Improved Readability
+- Enables Immutability
+- Reduces Constructor Proliferation
+- Controlled Construction
+- Flexibility
+
+### Disadvantages / Pitfalls
+- Increased Verbosity
+- Class Overhead
+- Misuse for Simple Objects
+
+### Design Principles Involved
+- Single Responsibility Principle (SRP)
+- Separation of Concerns
+- Encapsulation
+- Open / Closed Principle (OCP)
+
+
+
+</details>
